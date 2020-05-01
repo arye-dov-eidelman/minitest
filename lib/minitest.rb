@@ -153,6 +153,8 @@ module Minitest
   # sub-classes to run.
 
   def self.__run reporter, options
+    # ToDo: add an index to each test before shuffling them
+
     suites = Runnable.runnables.reject { |s| s.runnable_methods.empty? }.shuffle
     parallel, serial = suites.partition { |s| s.test_order == :parallel }
 
