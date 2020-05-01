@@ -341,6 +341,8 @@ module Minitest
     # test. See Minitest::ParallelTest::ClassMethods for an example.
 
     def self.run_one_method klass, method_name, reporter
+      # ToDo: right about here is probably the place to test the reporter
+      #       what the pre shuffled index is
       reporter.prerecord klass, method_name
       reporter.record Minitest.run_one_method(klass, method_name)
     end
