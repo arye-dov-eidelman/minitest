@@ -310,6 +310,9 @@ module Minitest
       filter = options[:filter] || "/./"
       filter = Regexp.new $1 if filter.is_a?(String) && filter =~ %r%/(.*)/%
 
+      # ToDo figure out where the method list is shuffled
+      # if it's shuffled separately from the runnable test classes
+
       filtered_methods = self.runnable_methods.find_all { |m|
         filter === m || filter === "#{self}##{m}"
       }
@@ -323,6 +326,7 @@ module Minitest
 
       return if filtered_methods.empty?
 
+      # is this the place to tell the reporter the method index?
       with_info_handler reporter do
         filtered_methods.each do |method_name|
           run_one_method self, method_name, reporter
